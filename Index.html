@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HORI & Me - 4 Month Anniversary</title>
+<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    /* Basic Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; overflow: hidden; font-family: 'Roboto', sans-serif; background: #ffe6f0; color: #222; }
+
+    /* Container */
+    .page-container { width: 100%; height: 100vh; position: relative; }
+    .page { width: 100%; height: 100%; position: absolute; top: 0; left: 100%; padding: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 1s ease; overflow-y: auto; scroll-behavior: smooth; }
+    .page.active { left: 0; }
+
+    h1 { font-family: 'Shadows Into Light', cursive; font-size: 3em; margin-bottom: 20px; color: #d6336c; text-align: center; }
+    p { font-size: 1.2em; line-height: 1.8; max-width: 800px; text-align: center; margin-bottom: 20px; }
+    
+    /* Buttons */
+    .btn { padding: 10px 20px; font-size: 1.2em; margin-top: 20px; border: none; border-radius: 25px; cursor: pointer; background: #ff66a3; color: #fff; transition: all 0.3s ease; }
+    .btn:hover { background: #ff4d94; transform: scale(1.05); }
+
+    /* Heart Animation */
+    .heart { position: absolute; width: 20px; height: 20px; background: red; transform: rotate(45deg); animation: floatUp linear infinite; opacity: 0.8; }
+    .heart::before, .heart::after { content: ""; position: absolute; width: 20px; height: 20px; background: red; border-radius: 50%; }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+        100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+    }
+
+    /* Pheras animation */
+    .pheras-container { display: flex; justify-content: center; margin: 20px 0; }
+    .phera { width: 50px; height: 50px; border-radius: 50%; border: 4px solid gold; margin: 0 10px; opacity: 0; box-shadow: 0 0 15px gold; }
+    .phera.active { animation: glowPhera 1s forwards; }
+    @keyframes glowPhera {
+        0% { opacity: 0; transform: scale(0.5); box-shadow: 0 0 0 gold; }
+        100% { opacity: 1; transform: scale(1); box-shadow: 0 0 25px gold; }
+    }
+
+    /* 100 Reasons fade-in */
+    .reason { opacity: 0; transition: opacity 0.8s ease; margin: 5px 0; }
+    .reason.visible { opacity: 1; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #ff66a3; border-radius: 4px; }
+    ::-webkit-scrollbar-track { background: rgba(255,255,255,0.2); }
+
+</style>
+</head>
+<body>
+
+<!-- Floating hearts script container -->
+<div id="heartContainer"></div>
+
+<div class="page-container">
+    <!-- Page 1 -->
+    <div class="page active" id="page1">
+        <h1>Our Accidental Love Story 💍</h1>
+        <p>This is a small website for someone very special to me — HORI. Today marks <b>4 months of us</b>, and honestly it still feels unreal how everything happened. What started as random conversations slowly turned into something much deeper… And somehow in the middle of everything, we even <b>accidentally took pheras like a married couple</b>. So technically… this is our <b>4-month anniversary story</b>. ❤️</p>
+        <button class="btn" onclick="nextPage()">Start the Story</button>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page" id="page2">
+        <h1>First Time We Met</h1>
+        <p>Not exactly the first time we met, because technically we had already seen each other before. But the moment that really stayed in my mind was when the <b>Hindi students of Section C were moving to Section B and Section A</b>. And there you were… sitting quietly in the corner of the room. I’ve said this so many times already — but seriously, you looked <b>so composed and smart</b>. I remember feeling a little intimidated, like "lol is this class even for me? Everyone looks smart af." And honestly, at that moment you seemed as distant to me as any other girl in that classroom. In my eyes, you were just this <b>very composed, calm person</b> sitting there.</p>
+        <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page" id="page3">
+        <h1>Closeness</h1>
+        <p>But things started changing because of something completely random. My sudden friendship with <b>Topi</b> ended up making me meet you more often. We talked a few times during the <b>student assembly</b>, and especially during <b>her sister’s birthday</b>. And at that point something felt different. You actually seemed <b>really comforting to me</b>. (Hnji, pehle se hi comforting lage ho aap.) After that birthday we ended up exchanging <b>Instagram IDs</b>, and that’s when everything really started. We began talking more often… then more frequently… and before we even realized it, we were <b>talking constantly till late nights</b>. It was a really fast friendship. And honestly, when I think about it now… our friendship had already become so close that it was basically <b>like a relationship in its final stage</b>, just without the label.</p>
+        <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page" id="page4">
+        <h1>When Things Started Feeling Different</h1>
+        <p>I think this really started during the <b>farewell</b>. That night we suddenly got <b>super close, really fast</b>. And honestly I can proudly say that I had <b>never been that physically comfortable around a girl before in my whole life</b> like I was with you. I mean yeah, there have been cases where girls touched me… but mostly by <b>beating me up lol</b>. But with you it was different. That was the first time I <b>lent my coat</b> to someone, the first time I <b>brushed someone’s hair (by my own will for God’s sake)</b>, and somehow none of it felt awkward. From that day onwards I just felt <b>really close and really comfortable around you</b>. Being around you started to feel like <b>a second home</b>. Then came another moment — <b>the summer camp</b>. And honestly, I think by that time I had already started <b>keeping you at the center of my life</b>. Because the funny thing is… I <b>wasn’t even planning to go</b> to the camp in the first place. But you convinced me to go. So in the end… <b>I went because you did</b>. But things became really real on <b>6th November</b>. And I know I’ve repeated that moment so many times already 😭… but that day holds a <b>core feeling</b> for me that I don’t think I’ll ever forget.</p>
+        <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+
+    <!-- Page 5 -->
+    <div class="page" id="page5">
+        <h1>The Mandir Incident</h1>
+        <p>You remember our visit to the <b>mandir on 27th February</b>, right? That normal little visit somehow turned into something much funnier and much more special. Because somehow… we ended up taking <b>4 pheras</b> around the mandir. And the funny part is that in <b>Assamese tradition, 4 pheras basically means marriage</b>. So if we follow that logic… <b>we accidentally got married that day</b>. Just pause for a second and think about that memory… before moving on to the next page. ❤️</p>
+        <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+
+    <!-- Page 6 -->
+    <div class="page" id="page6">
+        <h1>The 4 Pheras We Took 💍</h1>
+        <p>So if we really think about it… the day we went to the mandir and took those <b>4 pheras</b>, we unknowingly completed something very meaningful. In Assamese tradition, <b>4 pheras already mean marriage</b>. Which means… without planning it… without realizing it… <b>we accidentally got married that day.</b></p>
+        <div class="pheras-container">
+            <div class="phera" id="phera1"></div>
+            <div class="phera" id="phera2"></div>
+            <div class="phera" id="phera3"></div>
+            <div class="phera" id="phera4"></div>
+        </div>
+        <button class="btn" onclick="animatePheras()">See the Pheras</button>
+        <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+
+    <!-- Page 7 -->
+    <div class="page" id="page7">
+        <h1>Four Months of Us</h1>
+        <p>Four months. When someone just hears the number, it might sound small. Just four months. But when I actually think about everything that happened between us in these four months, it feels like we lived through so many moments, emotions, and memories that it almost feels much longer. Some of those moments are the ones that randomly come back to my mind when I’m doing something else. Small scenes that just replay in my head. Like <b>our first hug</b> near the school library in that storage room area. It was such a simple moment, but it felt so different. I remember feeling a mix of comfort, nervousness, and happiness at the same time. It wasn’t dramatic or anything big, but it felt real. Like that moment quietly confirmed that what we had was something more than just friendship. And then there was <b>our first kiss</b>, outside those closed shops on the staircase. Even now when I think about that moment, it just feels surreal. Like one of those moments where the world around you kind of fades for a second and it’s just the two of you there. I don’t think I’ll ever forget how nervous and excited I felt at the same time. But honestly, it’s not just those “big” moments that make these four months special. It’s also all the small things. The random glances in class. Those moments when we’d just look at each other and somehow understand something without even saying it. The little smiles, the late night conversations, the inside jokes that probably wouldn’t make sense to anyone else. But our story wasn’t just perfect happy moments either. We also had disagreements. There were times where expectations didn’t match. Times where one of us felt hurt, misunderstood, or disappointed. Sometimes things felt confusing. Sometimes things felt heavy. But when I look back at everything, I realize something important: <b>we still stayed</b>. Even after disagreements. Even after broken expectations. Even after those moments where things felt difficult. Somehow, through all of that, our relationship survived. And maybe that’s what makes these four months actually meaningful. Not that everything was perfect — but that even when things weren’t perfect, we still kept going. Because relationships aren’t just built on happy moments. They’re built on choosing to stay, choosing to understand, and choosing to keep trying. And when I look back at everything — the hugs, the kisses, the glances, the laughter, the arguments, the misunderstandings, and the moments of comfort — I realize that all of it together forms our story. A story that somehow started with two people who barely knew each other… and somehow led to two people who even accidentally got married after taking pheras at a mandir. Which honestly still feels funny to say. But at the same time… it also feels strangely meaningful. Because in these four months, through everything we experienced, one thing became clear to me: <b>You became someone very important in my life.</b></p>
+        <button class="btn" onclick="nextPage()">Next</button>
+    </div>
+
+<!-- Page 8 -->
+<div class="page" id="page8">
+<h1>100 Things I Love About You</h1>
+<p>There are a lot of things I love about you, HORI. Some big, some small, some that you probably don’t even realize. I tried to write them down…</p>
+<div id="reasons-container">
+<!-- 100 reasons will be generated by JS -->
+</div>
+<button class="btn" onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 9 -->
+<div class="page" id="page9">
+<h1>Looking Ahead</h1>
+<p>HORI, when I think about the future, it feels like this huge, unpredictable journey stretching out ahead of us, and I know that soon we’re entering <b>LDR for who knows how long because of studies</b>. Honestly, it scares me a little to think about the distance, the long nights without seeing each other, the missed daily laughs, and all the little moments that make us *us*. But at the same time, I also feel a deep sense of hope and excitement, because these four months have already shown me that what we share is strong enough to survive anything — even distance. I imagine us navigating the LDR together, learning to communicate even more, sharing our lives across screens, sending each other random messages just to make the other smile, and finding new ways to feel close even when miles separate us. I imagine the day when we finally reunite after a long time apart — the hugs that last forever, the laughter that can’t stop, and the simple comfort of just being near each other again. I imagine us continuing to build memories, even from afar, and making every call, every message, and every virtual moment count, because the love we’ve created in these four months isn’t bound by geography. I imagine the challenges we’ll face — misunderstandings, waiting, and occasional loneliness — but I also imagine overcoming all of them together, growing stronger, and appreciating each other even more. And I imagine a future beyond this distance, where we can finally be side by side, celebrating life, love, and every moment together, still remembering that hilarious day in the mandir when we took those 4 pheras and accidentally became a married couple, still laughing about our silly beginnings, and still holding on to each other no matter what comes our way. Because HORI, even if distance separates us for months or years, my heart is already with you, and I know that this is just another part of our story — one that will make us stronger, closer, and even more in love when we meet again.</p>
+<button class="btn" onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 10 -->
+<div class="page" id="page10">
+<h1>Happy 4 Month Anniversary ❤️</h1>
+<p>HORI, these four months have been the most incredible, chaotic, and beautiful months of my life. From noticing you in that corner of the classroom, to our late-night talks, stolen glances, first hugs, first kisses, silly arguments, comforting moments, and even our <b>accidental pheras</b>, every second with you has felt unforgettable. And now, as we step into this <b>LDR for studies</b>, I want you to know that nothing changes what I feel for you — if anything, it makes every moment we spent together even more precious and every call, every message, and every memory even more meaningful. I know there will be days when we miss each other terribly, when waiting feels heavy, or when distance makes things challenging, but I also know that our relationship has survived laughter, misunderstandings, disagreements, and broken expectations — so it can definitely survive a few miles apart. I imagine the day we finally reunite, hugging for longer than ever, laughing at all the tiny memories we’ve collected, sharing everything we couldn’t in person, and realizing once again that no matter how far apart we are, our hearts have already found a home in each other. HORI, thank you for being my comfort, my happiness, my accidental wife, and my best friend. Thank you for all the memories, the late-night talks, the laughter, the hugs, the kisses, and even the disagreements, because every part of this journey has been ours. And most of all, thank you for loving me, trusting me, and making me feel like I belong with you, no matter the distance. These four months are just the beginning, and even if LDR stretches for who knows how long, I
