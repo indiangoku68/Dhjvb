@@ -4,194 +4,293 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HORI & Me - 4 Month Anniversary</title>
-<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
-    /* Reset */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body, html { width:100%; height:100%; overflow:hidden; font-family:'Roboto', sans-serif; background:#ffe6f0; color:#222; }
+body, html {
+  margin:0;
+  padding:0;
+  font-family: Arial, sans-serif;
+  background:#ffe6f0;
+  color:#222;
+  overflow-x:hidden;
+}
 
-    /* Pages */
-    .page-container { width:100%; height:100vh; position:relative; }
-    .page { width:100%; height:100%; position:absolute; top:0; left:100%; padding:50px; display:flex; flex-direction:column; justify-content:center; align-items:center; transition: all 1s ease; overflow-y:auto; scroll-behavior:smooth; }
-    .page.active { left:0; }
+.page {
+  display:none;
+  width:100%;
+  min-height:100vh;
+  padding:50px 20px;
+  box-sizing:border-box;
+  overflow-y:auto;
+}
 
-    h1 { font-family:'Shadows Into Light', cursive; font-size:3em; margin-bottom:20px; color:#d6336c; text-align:center; }
-    p { font-size:1.2em; line-height:1.8; max-width:800px; text-align:center; margin-bottom:20px; }
+.page.active {
+  display:block;
+}
 
-    /* Buttons */
-    .btn { padding:10px 20px; font-size:1.2em; margin:10px; border:none; border-radius:25px; cursor:pointer; background:#ff66a3; color:#fff; transition: all 0.3s ease; }
-    .btn:hover { background:#ff4d94; transform:scale(1.05); }
+h1 {
+  text-align:center;
+  color:#d6336c;
+  margin-bottom:20px;
+  font-size:clamp(1.8rem,5vw,3em);
+}
 
-    /* Hearts */
-    .heart { position:absolute; width:20px; height:20px; background:red; transform:rotate(45deg); animation:floatUp linear infinite; opacity:0.8; }
-    .heart::before, .heart::after { content:""; position:absolute; width:20px; height:20px; background:red; border-radius:50%; }
-    .heart::before { top:-10px; left:0; }
-    .heart::after { left:10px; top:0; }
-    @keyframes floatUp {
-        0% { transform: translateY(0) rotate(45deg); opacity:0.8; }
-        100% { transform: translateY(-120vh) rotate(45deg); opacity:0; }
-    }
+p {
+  max-width:800px;
+  margin:10px auto;
+  text-align:center;
+  font-size:clamp(1rem,2.5vw,1.2em);
+  line-height:1.6;
+}
 
-    /* Pheras */
-    .pheras-container { display:flex; justify-content:center; margin:20px 0; }
-    .phera { width:50px; height:50px; border-radius:50%; border:4px solid gold; margin:0 10px; opacity:0; box-shadow:0 0 15px gold; }
-    .phera.active { animation: glowPhera 1s forwards; }
-    @keyframes glowPhera {
-        0% { opacity:0; transform:scale(0.5); box-shadow:0 0 0 gold; }
-        100% { opacity:1; transform:scale(1); box-shadow:0 0 25px gold; }
-    }
+button {
+  padding:10px 20px;
+  margin:10px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  background:#ff66a3;
+  color:#fff;
+  font-size:1em;
+  transition:0.3s;
+}
 
-    /* 100 Reasons */
-    .reason { opacity:0; transition: opacity 0.8s ease; margin:5px 0; }
-    .reason.visible { opacity:1; }
+button:hover {
+  background:#ff4d94;
+  transform:scale(1.05);
+}
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width:8px; }
-    ::-webkit-scrollbar-thumb { background:#ff66a3; border-radius:4px; }
-    ::-webkit-scrollbar-track { background:rgba(255,255,255,0.2); }
+.pheras-container {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
 
+.phera {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:4px solid gold;
+  margin:10px;
+  opacity:0;
+  box-shadow:0 0 15px gold;
+}
+
+.phera.active {
+  animation:glowPhera 1s forwards;
+}
+
+@keyframes glowPhera {
+  0% { opacity:0; transform:scale(0.5); }
+  100% { opacity:1; transform:scale(1); }
+}
+
+.reason {
+  opacity:0;
+  margin:5px 0;
+  text-align:center;
+  transition:opacity 0.8s ease;
+}
+
+.reason.visible {
+  opacity:1;
+}
+
+.heart {
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:red;
+  transform:rotate(45deg);
+  animation:floatUp linear infinite;
+  opacity:0.8;
+}
+
+.heart::before,
+.heart::after {
+  content:"";
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:red;
+  border-radius:50%;
+}
+
+.heart::before { top:-10px; left:0; }
+.heart::after { left:10px; top:0; }
+
+@keyframes floatUp {
+  0% { transform:translateY(0) rotate(45deg); opacity:0.8; }
+  100% { transform:translateY(-120vh) rotate(45deg); opacity:0; }
+}
+
+@media(max-width:600px){
+  .page{ padding:30px 15px; }
+}
 </style>
 </head>
+
 <body>
 
-<!-- Floating hearts -->
 <div id="heartContainer"></div>
 
-<div class="page-container">
-    <!-- Page 1 -->
-    <div class="page active" id="page1">
-        <h1>Our Accidental Love Story 💍</h1>
-        <p>This is a small website for someone very special to me — HORI. Today marks <b>4 months of us</b>, and honestly it still feels unreal how everything happened. What started as random conversations slowly turned into something much deeper… And somehow in the middle of everything, we even <b>accidentally took pheras like a married couple</b>. So technically… this is our <b>4-month anniversary story</b>. ❤️</p>
-        <button class="btn" onclick="nextPage()">Start the Story</button>
-    </div>
-
-    <!-- Page 2 -->
-    <div class="page" id="page2">
-        <h1>First Time We Met</h1>
-        <p>Not exactly the first time we met, because technically we had already seen each other before. But the moment that really stayed in my mind was when the <b>Hindi students of Section C were moving to Section B and Section A</b>. And there you were… sitting quietly in the corner of the room. I’ve said this so many times already — but seriously, you looked <b>so composed and smart</b>. I remember feeling a little intimidated, like "lol is this class even for me? Everyone looks smart af." And honestly, at that moment you seemed as distant to me as any other girl in that classroom. In my eyes, you were just this <b>very composed, calm person</b> sitting there.</p>
-        <button class="btn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Page 3 -->
-    <div class="page" id="page3">
-        <h1>Closeness</h1>
-        <p>But things started changing because of something completely random. My sudden friendship with <b>Topi</b> ended up making me meet you more often. We talked a few times during the <b>student assembly</b>, and especially during <b>her sister’s birthday</b>. And at that point something felt different. You actually seemed <b>really comforting to me</b>. After that birthday we ended up exchanging <b>Instagram IDs</b>, and that’s when everything really started. We began talking more often… then more frequently… and before we even realized it, we were <b>talking constantly till late nights</b>. It was a really fast friendship. And honestly, when I think about it now… our friendship had already become so close that it was basically <b>like a relationship in its final stage</b>, just without the label.</p>
-        <button class="btn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Page 4 -->
-    <div class="page" id="page4">
-        <h1>When Things Started Feeling Different</h1>
-        <p>I think this really started during the <b>farewell</b>. That night we suddenly got <b>super close, really fast</b>. And honestly I can proudly say that I had <b>never been that physically comfortable around a girl before in my whole life</b> like I was with you. That was the first time I <b>lent my coat</b> to someone, the first time I <b>brushed someone’s hair (by my own will for God’s sake)</b>, and none of it felt awkward. From that day onwards I felt <b>really close and comfortable around you</b>. Being around you started to feel like <b>a second home</b>. Then came another moment — <b>the summer camp</b>. And honestly, I think by that time I had already started <b>keeping you at the center of my life</b>. Because I <b>wasn’t even planning to go</b> to the camp initially, but you convinced me. Things became really real on <b>6th November</b>. That day holds a <b>core feeling</b> I don’t think I’ll ever forget.</p>
-        <button class="btn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Page 5 -->
-    <div class="page" id="page5">
-        <h1>The Mandir Incident</h1>
-        <p>You remember our visit to the <b>mandir on 27th February</b>, right? That normal little visit somehow turned into something much funnier and much more special. Because somehow… we ended up taking <b>4 pheras</b> around the mandir. And the funny part is that in <b>Assamese tradition, 4 pheras basically mean marriage</b>. So if we follow that logic… <b>we accidentally got married that day</b>. Just pause for a second and think about that memory… before moving on to the next page. ❤️</p>
-        <button class="btn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Page 6 -->
-    <div class="page" id="page6">
-        <h1>The 4 Pheras We Took 💍</h1>
-        <p>That day at the mandir, taking <b>4 pheras</b> unknowingly completed something very meaningful. In Assamese tradition, <b>4 pheras already mean marriage</b>. Which means… without planning it… without realizing it… <b>we accidentally got married</b>.</p>
-        <div class="pheras-container">
-            <div class="phera" id="phera1"></div>
-            <div class="phera" id="phera2"></div>
-            <div class="phera" id="phera3"></div>
-            <div class="phera" id="phera4"></div>
-        </div>
-        <button class="btn" onclick="animatePheras()">See the Pheras</button>
-        <button class="btn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Page 7 -->
-    <div class="page" id="page7">
-        <h1>Four Months of Us</h1>
-        <p>Four months. When someone hears the number, it might sound small. But when I actually think about everything that happened between us, it feels like we lived through countless moments, emotions, and memories. Like <b>our first hug</b> near the library storage room, <b>first kiss</b> at the staircase outside the closed shops, the glances, smiles, arguments, disagreements, and broken expectations — yet we survived. Every memory together, big or small, has formed the beautiful chaos of us. And somehow… through everything, you became my comfort, my home, and my accidental wife. ❤️</p>
-        <button class="btn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Page 8 -->
-    <div class="page" id="page8">
-        <h1>100 Things I Love About You</h1>
-        <p>There are so many things I love about you, HORI. Here are some:</p>
-        <div id="reasons-container"></div>
-        <button class="btn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Page 9 -->
-    <div class="page" id="page9">
-        <h1>Looking Ahead</h1>
-        <p>HORI, soon we’ll be in <b>LDR for studies</b>. It scares me to think about distance, missed laughter, and waiting for calls. But these four months proved that what we share is strong enough to survive anything — even miles apart. I imagine us keeping close through messages, calls, and small surprises. I imagine our reunion after months apart, hugging endlessly, laughing at memories, sharing everything we missed, and realizing that distance never diminished what we have. Through misunderstandings, waiting, and loneliness, our love will grow stronger, because even now… we are already married in spirit and heart. ❤️</p>
-        <button class="btn" onclick="nextPage()">Next</button>
-    </div>
-
-    <!-- Page 10 -->
-    <div class="page" id="page10">
-        <h1>Happy 4 Month Anniversary ❤️</h1>
-        <p>HORI, these four months have been incredible, chaotic, and beautiful. From noticing you in that corner of the classroom, to late-night talks, first hugs, first kisses, silly arguments, comforting moments, and our <b>accidental pheras</b>, every second with you has been unforgettable. Even if LDR stretches for months, our hearts are already together. Thank you for being my accidental wife, my comfort, and my best friend. I love you forever ❤️</p>
-    </div>
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+<h1>Our Accidental Love Story 💍</h1>
+<p>This is a small website for someone very special to me — HORI. Today marks <b>4 months of us</b>, and honestly it still feels unreal how everything happened. What started as random conversations slowly turned into something much deeper… And somehow in the middle of everything, we even <b>accidentally took pheras like a married couple</b>. So technically… this is our <b>4-month anniversary story</b>. ❤️</p>
+<button onclick="nextPage()">Start the Story</button>
 </div>
 
-<!-- Scripts -->
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<h1>First Time We Met</h1>
+<p>Not exactly the first time we met, because technically we had already seen each other before. But the moment that really stayed in my mind was when the <b>Hindi students of Section C were moving to Section B and Section A</b>. And there you were… sitting quietly in the corner of the room. I’ve said this so many times already — but seriously, you looked <b>so composed and smart</b>. I remember feeling a little intimidated, like "lol is this class even for me? Everyone looks smart af." And honestly, at that moment you seemed as distant to me as any other girl in that classroom. In my eyes, you were just this <b>very composed, calm person</b> sitting there.</p>
+<button onclick="prevPage()">Back</button>
+<button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+<h1>Closeness</h1>
+<p>But things started changing because of something completely random. My sudden friendship with <b>Topi</b> ended up making me meet you more often. We talked a few times during the <b>student assembly</b>, and especially during <b>her sister’s birthday</b>. And at that point something felt different. You actually seemed <b>really comforting to me</b>. After that birthday we ended up exchanging <b>Instagram IDs</b>, and that’s when everything really started. We began talking more often… then more frequently… and before we even realized it, we were <b>talking constantly till late nights</b>. It was a really fast friendship. And honestly, when I think about it now… our friendship had already become so close that it was basically <b>like a relationship in its final stage</b>, just without the label.</p>
+<button onclick="prevPage()">Back</button>
+<button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+<h1>When Things Started Feeling Different</h1>
+<p>I think this really started during the <b>farewell</b>. That night we suddenly got <b>super close, really fast</b>. And honestly I can proudly say that I had <b>never been that physically comfortable around a girl before in my whole life</b> like I was with you. That was the first time I <b>lent my coat</b> to someone, the first time I <b>brushed someone’s hair</b>, and none of it felt awkward. From that day onwards I felt <b>really close and comfortable around you</b>. Being around you started to feel like <b>a second home</b>. Then came another moment — <b>the summer camp</b>. And honestly, I think by that time I had already started <b>keeping you at the center of my life</b>.</p>
+<button onclick="prevPage()">Back</button>
+<button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+<h1>The Mandir Incident</h1>
+<p>You remember our visit to the <b>mandir on 27th February</b>, right? That normal little visit somehow turned into something much funnier and much more special. Because somehow… we ended up taking <b>4 pheras</b> around the mandir. And the funny part is that in <b>Assamese tradition, 4 pheras basically mean marriage</b>. So if we follow that logic… <b>we accidentally got married that day</b>.</p>
+<button onclick="prevPage()">Back</button>
+<button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="page6">
+<h1>The 4 Pheras We Took 💍</h1>
+<p>That day at the mandir, taking <b>4 pheras</b> unknowingly completed something very meaningful.</p>
+<div class="pheras-container">
+<div class="phera" id="phera1"></div>
+<div class="phera" id="phera2"></div>
+<div class="phera" id="phera3"></div>
+<div class="phera" id="phera4"></div>
+</div>
+<button onclick="animatePheras()">See the Pheras</button>
+<button onclick="prevPage()">Back</button>
+<button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="page7">
+<h1>Four Months of Us</h1>
+<p>
+Four months. When someone hears the number, it might sound small. But when I actually think about everything that happened between us, it feels like we lived through countless moments, emotions, and memories. Like <b>our first hug near the library storage room</b>, <b>first kiss</b> at the staircase outside the closed shops, the glances, smiles, arguments, disagreements, and broken expectations — yet we survived.
+
+These four months were full of moments that slowly built something meaningful between us. There were late-night conversations that lasted much longer than we planned, random jokes that only we understood, quiet moments where simply sitting near each other felt enough, and those unexpected emotional talks where we opened up more than we thought we would.
+
+Every memory together, big or small, has formed the beautiful chaos of us. Even the confusing moments and disagreements somehow became part of the story we were writing together. Through every experience we kept returning to each other, understanding each other a little more each time.
+
+And somehow… through everything, you became my comfort, my home, and my accidental wife.
+</p>
+<button onclick="prevPage()">Back</button>
+<button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="page8">
+<h1>100 Things I Love About You</h1>
+<div id="reasons-container"></div>
+<button onclick="prevPage()">Back</button>
+<button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="page9">
+<h1>Looking Ahead</h1>
+<p>
+HORI, soon we’ll be in <b>LDR for studies</b>. It scares me to think about distance, missed laughter, and waiting for calls. But these four months proved that what we share is strong enough to survive anything — even miles apart.
+
+Distance might mean missing the little moments we’re used to sharing, the spontaneous conversations, and the comfort of simply being near each other. But it will also make every call, every message, and every reunion more meaningful.
+
+I imagine us keeping close through messages, calls, and small surprises. I imagine us sharing our daily lives even when we are far apart, telling each other about the little victories, the stressful days, and the random thoughts that come to our minds.
+
+I imagine our reunion after months apart, hugging endlessly, laughing at memories, sharing everything we missed, and realizing that distance never diminished what we have.
+
+Through misunderstandings, waiting, and loneliness, our connection will grow stronger, because even now… we are already married in spirit and heart.
+</p>
+<button onclick="prevPage()">Back</button>
+<button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 10 -->
+<div class="page" id="page10">
+<h1>Happy 4 Month Anniversary ❤️</h1>
+<p>
+HORI, these four months have been incredible, chaotic, emotional, and beautiful. From noticing you in that corner of the classroom, to late-night talks, first hugs, first kisses, silly arguments, comforting moments, and our <b>accidental pheras</b>, every second with you has been unforgettable.
+
+It’s strange how life works sometimes. Someone who once felt like just another person in the room slowly became someone who means so much more. The journey from strangers to something this meaningful happened so naturally that sometimes it still surprises me.
+
+Even if LDR stretches for months, our hearts are already connected through the memories we built and the moments we shared. Distance might change where we are physically, but it won’t erase what we created together.
+
+Thank you for being my accidental wife, my comfort, my best friend, and someone who made these months unforgettable. I’m grateful for every memory we created and for every moment we will create in the future.
+
+Happy 4 month anniversary.
+</p>
+<button onclick="prevPage()">Back</button>
+</div>
+
 <script>
-let currentPage = 1;
-const totalPages = 10;
+let currentPage=1;
+const totalPages=10;
 
-function nextPage() {
-    if(currentPage < totalPages){
-        document.getElementById('page'+currentPage).classList.remove('active');
-        currentPage++;
-        document.getElementById('page'+currentPage).classList.add('active');
-    }
+function showPage(n){
+for(let i=1;i<=totalPages;i++){
+document.getElementById('page'+i).classList.remove('active');
+}
+document.getElementById('page'+n).classList.add('active');
 }
 
-function prevPage(){
-    if(currentPage > 1){
-        document.getElementById('page'+currentPage).classList.remove('active');
-        currentPage--;
-        document.getElementById('page'+currentPage).classList.add('active');
-    }
-}
+function nextPage(){if(currentPage<totalPages) currentPage++; showPage(currentPage);}
+function prevPage(){if(currentPage>1) currentPage--; showPage(currentPage);}
 
-// Animate Pheras
 function animatePheras(){
-    for(let i=1;i<=4;i++){
-        setTimeout(()=>{
-            document.getElementById('phera'+i).classList.add('active');
-        }, i*1000);
-    }
+for(let i=1;i<=4;i++){
+setTimeout(()=>{document.getElementById('phera'+i).classList.add('active');}, i*1000);
+}
 }
 
-// Floating hearts
 function createHeart(){
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.left = Math.random()*window.innerWidth + 'px';
-    heart.style.animationDuration = (3 + Math.random()*3) + 's';
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),6000);
+const heart=document.createElement('div');
+heart.classList.add('heart');
+heart.style.left=Math.random()*window.innerWidth+'px';
+heart.style.animationDuration=(3+Math.random()*3)+'s';
+document.getElementById('heartContainer').appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
 }
+
 setInterval(createHeart,500);
 
-// 100 Reasons for Page 8
-const reasons = [];
-for(let i=1;i<=101;i++){
-    if(i<101) reasons.push(`Reason ${i}: Something special I love about you ❤️`);
-    else reasons.push(`Reason ${i}: And there are even more ❤️`);
-}
-const reasonsContainer = document.getElementById('reasons-container');
-reasons.forEach((r, idx)=>{
-    const p=document.createElement('p');
-    p.classList.add('reason');
-    p.textContent=r;
-    reasonsContainer.appendChild(p);
-    setTimeout(()=>p.classList.add('visible'), idx*100);
+const reasons=[ /* your 100 reasons here exactly */ ];
+
+const container=document.getElementById("reasons-container");
+
+reasons.forEach((text,i)=>{
+const p=document.createElement("p");
+p.classList.add("reason");
+p.textContent=(i+1)+". "+text;
+container.appendChild(p);
+setTimeout(()=>{p.classList.add("visible");},i*60);
 });
 </script>
 
 </body>
-    </html>
+</html>
